@@ -20,7 +20,7 @@ hello, this is a description
 ## Message Protocol
 
 ### Client connection
-![diagramma messaggio broadcast](https://github.com/DevMushy/Chat-ragusa-duka/blob/master/images/ClientsConnectionDiagram.png)
+![diagramma connessione](https://github.com/DevMushy/Chat-ragusa-duka/blob/master/images/ClientsConnectionDiagram.png)
 )
 
 ### Broadcast Message Structure
