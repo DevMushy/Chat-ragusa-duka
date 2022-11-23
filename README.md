@@ -21,7 +21,6 @@ hello, this is a description
 
 ### Client connection
 ![diagramma connessione](https://github.com/DevMushy/Chat-ragusa-duka/blob/master/images/ClientsConnectionDiagram.png)
-)
 
 ### Broadcast Message Structure
 ```
