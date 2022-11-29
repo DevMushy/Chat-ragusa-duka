@@ -3,7 +3,7 @@
 - [Technologies utilized](https://github.com/DevMushy/chat-ragusa-duka/edit/main/README.md#technologies-utilized)
 - [Message Protocol](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#message-protocol)
   + [Client connection](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#client-connection)
-  + [Broadcast Message Structure](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#broadcast-message-structure)
+  + [Broadcast Message](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#broadcast-message)
   + a
 
 
@@ -19,6 +19,15 @@ hello, this is a description
 
 ## Message Protocol
 
+### Message Structure
+
+```
+{
+
+
+}
+```
+
 ### Client connection
 ![diagramma connessione](https://github.com/DevMushy/Chat-ragusa-duka/blob/master/images/ClientsConnectionDiagram.png)
 
@@ -28,14 +37,6 @@ hello, this is a description
 
 ![diagramma messaggio broadcast](https://github.com/DevMushy/Chat-ragusa-duka/blob/master/images/BroadcastMessageDiagram.png)
 
-### Broadcast Message Structure
-
-```
-{
-
-
-}
-```
 
 
 
