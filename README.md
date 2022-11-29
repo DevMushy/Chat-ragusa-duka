@@ -23,8 +23,10 @@ hello, this is a description
 
 ```
 {
-
-
+"Sender":"",
+"Type":"",
+"Receiver":"",
+"Body":""
 }
 ```
 
