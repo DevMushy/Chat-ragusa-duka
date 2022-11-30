@@ -25,7 +25,7 @@ hello, this is a description
 {
 "Sender":"",
 "Type":"",
-"Receiver":"",
+"Receiver":"*",
 "Body":""
 }
 ```
@@ -43,5 +43,6 @@ hello, this is a description
 
 
 
-##
-###
+## Private Message
+
+### Private Message Diagram
