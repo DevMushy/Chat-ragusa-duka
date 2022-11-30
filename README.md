@@ -23,10 +23,10 @@ hello, this is a description
 
 ```
 {
-"Sender":"",
-"Type":"",
-"Receiver":"*",
-"Body":""
+"sender":"",
+"type":"",
+"receiver":"*",
+"body":""
 }
 ```
 
