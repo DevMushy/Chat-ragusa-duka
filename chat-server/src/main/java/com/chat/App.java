@@ -1,13 +1,21 @@
 package com.chat;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
-        System.out.println( "Hello World!" );
+        boolean cond = true;
+
+        ServerSocket ss = new ServerSocket(3000);
+        System.out.println("Server in ascolto sulla porta 3000");
+        while(cond){
+            Socket s = ss.accept();
+            ClientHandler c = new ClientHandler(s);
+            c.start();
+        }
+        ss.close();
     }
+
 }
