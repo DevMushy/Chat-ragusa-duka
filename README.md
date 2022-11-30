@@ -27,7 +27,6 @@ hello, this is a description
 "type":"",
 "receiver":"*",
 "body":""
-"utility":""
 }
 ```
 
