@@ -4,40 +4,43 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ClientHandler extends Thread {
 
     private Socket s;
     private static int x = 1;
+    PrintWriter pr;
+    BufferedReader br;
     private int id;
-    private LocalDate date;
-    private LocalTime time;
     private boolean loop = true;
-    char[] charArray = new char[50];
-    char[] charbody = new char[2000];
+    String reciever = new String();
+    String body = new String();
     int pos = 0;
+    ArrayList<ClientHandler> listaClient;
+    String clientUserName;
 
-    public ClientHandler(Socket s) {
+    public ClientHandler(Socket s, ArrayList<ClientHandler> listaClient) {
         this.s = s;
         id = x++;
         setName("Chat");
+        this.listaClient = listaClient;
     }
 
     public void run() {
         try {
             // per parlare
-            PrintWriter pr = new PrintWriter(s.getOutputStream(), true);
+            pr = new PrintWriter(s.getOutputStream(), true);
 
             // per ascoltare
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
             ObjectMapper mapper = new ObjectMapper();
+            clientUserName = br.readLine();
 
             while (loop) {
-                // da riontrollare
                 String tempMessage = br.readLine();
                 Message message = mapper.readValue(tempMessage, Message.class);
 
@@ -49,33 +52,34 @@ public class ClientHandler extends Thread {
                             pos = i + 1;
                             break;
                         }
-                        charArray[i] = message.getBody().charAt(i + 1);
-                        System.out.println(charArray);
+                        reciever = reciever + message.getBody().charAt(i + 1);
                     }
-                    int j = 0;
                     for (int i = pos; i < message.getBody().length(); i++) {
 
-                        charbody[j] = message.getBody().charAt(i);
-                        j++;
+                        body = body + message.getBody().charAt(i);
                     }
+                    body = body.replaceAll("^.", "");
 
-                    String test = new String(charbody);
-                    test = test.replaceAll("^.", "");
-
-                    
-                    message.setReceiver(new String(charArray));
+                    message.setReceiver(reciever);
                     message.setType("tx1");
-                    message.setBody(test);
-                    System.out.println(message.getType());
-                    System.out.println(message.getReceiver());
-                    System.out.println(message.getBody());
+                    message.setBody(body);
+
+                    String MessageToSend = mapper.writeValueAsString(message);
+
+                    for (int i = 0; i < listaClient.size(); i++) {
+
+                        if (listaClient.get(i).clientUserName.equals(message.getReceiver())) {
+                            listaClient.get(i).pr.println(MessageToSend);
+                        }
+
+                    }
 
                 } else if (control == '/') {
                     for (int i = 0; i < 50; i++) {
                         if (String.valueOf(message.getBody().charAt(i + 1)) == " ") {
                             break;
                         }
-                        charArray[i] = message.getBody().charAt(i + 1);
+                        // charArray[i] = message.getBody().charAt(i + 1);
                     }
 
                 }
