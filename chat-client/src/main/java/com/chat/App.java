@@ -29,11 +29,7 @@ public class App
 
         Boolean loop = true;
         pr.println("Eccomi");
-
-        System.out.println(br.readLine()); // ricevo: Ciao come ti chiami?
-        pr.println(tastiera.readLine()); // leggo da tastiera il nome e lo invio
-        System.out.println(br.readLine()); // ricevo: Salve {nome} sei l'utente connesso numero {x} + i comandi disponibili
-
+        
         while(loop) {
             inputString = tastiera.readLine();
             messageToSend = new Message(userName, null, null, inputString);
