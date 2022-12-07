@@ -13,14 +13,23 @@ public class Message {
     private String receiver;
     private String body;
 
-    
+    public Message() {
+    }
+
+    public Message(String sender, String body) {
+        this.sender = sender;
+        this.type = null;
+        this.receiver = null;
+        this.body = body;
+    }
+
     public Message(String sender, String type, String receiver, String body) {
         this.sender = sender;
         this.type = type;
         this.receiver = receiver;
         this.body = body;
     }
-    
+
     public String getSender() {
         return sender;
     }

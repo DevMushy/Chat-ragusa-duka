@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class App 
 {
-    static String userName;
+    static String userName = "pippo";
     public static void main( String[] args ) throws Exception
     {
         Socket s = new Socket("localhost", 3000);
@@ -28,11 +28,10 @@ public class App
         Message messageToSend;
 
         Boolean loop = true;
-        pr.println("Eccomi");
-        
+
         while(loop) {
             inputString = tastiera.readLine();
-            messageToSend = new Message(userName, null, null, inputString);
+            messageToSend = new Message(userName, inputString);
             messageJSON = mapper.writeValueAsString(messageToSend);
             pr.println(messageJSON);
         };
