@@ -17,6 +17,7 @@ public class ClientHandler extends Thread {
     private int id;
     private boolean loop = true;
     String reciever = new String();
+    String command = new String();
     String body = new String();
     int pos = 0;
     ArrayList<ClientHandler> listaClient;
@@ -76,12 +77,29 @@ public class ClientHandler extends Thread {
 
                 } else if (control == '/') {
                     for (int i = 0; i < 50; i++) {
-                        if (String.valueOf(message.getBody().charAt(i + 1)) == " ") {
+                        if (message.getBody().charAt(i + 1) == ' ') {
                             break;
                         }
-                        // charArray[i] = message.getBody().charAt(i + 1);
+                        command = command + message.getBody().charAt(i + 1);
                     }
 
+                    switch(command){
+                        case ("help"):
+                        message.setBody("comando di help");
+                        message.setReceiver(null);
+                        message.setType("tx2");
+                        break;
+
+                    }
+
+                    String commandToSend = mapper.writeValueAsString(message);
+                    for (int i = 0; i < listaClient.size(); i++) {
+
+                        if (listaClient.get(i).clientUserName.equals(message.getSender())) {
+                            listaClient.get(i).pr.println(commandToSend);
+                        }
+
+                    }
                 }
             }
             s.close();
