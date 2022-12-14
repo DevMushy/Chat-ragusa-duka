@@ -22,26 +22,33 @@ public class App {
         BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
         ChatControlThread contr = new ChatControlThread(s);
         ObjectMapper mapper = new ObjectMapper();
-        contr.start();
 
-        String temp = br.readLine();
-        ClientList = mapper.readValue(temp, ArrayList.class);
+        // String temp = br.readLine();
+        // ClientList = mapper.readValue(temp, ArrayList.class);
 
-        if(ClientList.isEmpty()){
+        //if(ClientList.get(0) == null){
             System.out.println("inserisci username: ");
+            userName = tastiera.readLine();
             pr.println(userName);
-        }else{
+        /*}else{
             boolean Namecontrol = true;
             while (Namecontrol) {    
                 System.out.println("inserisci username: ");
                 userName = tastiera.readLine();
                 for (int i = 0; i < ClientList.size(); i++) {
                     if (ClientList.get(i).equals(userName)) {
-                        
+                        System.out.println(ClientList);
+                        Namecontrol = false;
                     }
                 }
+                if(!Namecontrol){
+                    pr.println(userName);
+                    break;
+                }
             }
-        }
+        }*/
+
+        contr.start();
 
         String inputString;
         String messageJSON;

@@ -42,12 +42,12 @@ public class ClientHandler extends Thread {
 
             ObjectMapper mapper = new ObjectMapper();
 
-            for (int i = 0; i < listaClient.size(); i++) {
+            /*for (int i = 0; i < listaClient.size(); i++) {
                 NameClientList.add(listaClient.get(i).clientUserName);
             }
 
             String SendClientList = mapper.writeValueAsString(NameClientList);
-            pr.write(SendClientList);
+            pr.println(SendClientList);*/
 
             clientUserName = br.readLine();
 
