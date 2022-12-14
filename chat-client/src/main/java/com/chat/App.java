@@ -43,10 +43,6 @@ public class App {
             }
         }
 
-
-
-        }
-
         String inputString;
         String messageJSON;
         Message messageToSend;
