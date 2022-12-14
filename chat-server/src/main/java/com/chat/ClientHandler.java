@@ -12,22 +12,24 @@ public class ClientHandler extends Thread {
 
     private Socket s;
     private static int x = 1;
-    PrintWriter pr;
-    BufferedReader br;
+    private PrintWriter pr;
+    private BufferedReader br;
     private int id;
     private boolean loop = true;
-    String reciever = new String();
-    String command = new String();
-    String body = new String();
-    int pos = 0;
-    ArrayList<ClientHandler> listaClient;
-    String clientUserName;
+    private String reciever = new String();
+    private String command = new String();
+    private String body = new String();
+    private int pos = 0;
+    private ArrayList<ClientHandler> listaClient;
+    private String clientUserName;
+    private ArrayList<String> NameClientList;
 
     public ClientHandler(Socket s, ArrayList<ClientHandler> listaClient) {
         this.s = s;
         id = x++;
         setName("Chat");
         this.listaClient = listaClient;
+        NameClientList = new ArrayList<String>();
     }
 
     public void run() {
@@ -39,6 +41,14 @@ public class ClientHandler extends Thread {
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
             ObjectMapper mapper = new ObjectMapper();
+
+            for (int i = 0; i < listaClient.size(); i++) {
+                NameClientList.add(listaClient.get(i).clientUserName);
+            }
+
+            String SendClientList = mapper.writeValueAsString(NameClientList);
+            pr.write(SendClientList);
+
             clientUserName = br.readLine();
 
             while (loop) {
@@ -76,19 +86,23 @@ public class ClientHandler extends Thread {
                     }
 
                 } else if (control == '/') {
-                    for (int i = 0; i < 50; i++) {
-                        if (message.getBody().charAt(i + 1) == ' ') {
-                            break;
-                        }
-                        command = command + message.getBody().charAt(i + 1);
+                    for (int i = 1; i < message.getBody().length(); i++) {
+                        command = command + message.getBody().charAt(i);
                     }
-
-                    switch(command){
+                    switch (command) {
                         case ("help"):
-                        message.setBody("comando di help");
-                        message.setReceiver(null);
-                        message.setType("tx2");
-                        break;
+                            message.setBody(
+                                    "Lista Comandi: -1) @[nome] per utilizzare i messaggi privati -2)...");
+                            message.setReceiver(null);
+                            message.setType("tx2");
+                            break;
+
+                        default:
+                            message.setBody(
+                                    "Comando digitato non valido, digita /help per vederte la lista dei comandi");
+                            message.setReceiver(null);
+                            message.setType("tx2");
+                            break;
 
                     }
 
@@ -99,6 +113,20 @@ public class ClientHandler extends Thread {
                             listaClient.get(i).pr.println(commandToSend);
                         }
 
+                    }
+                    command = "";
+                } else if(control >= 'a' && control <= 'z' || control >= 'A' && control <= 'Z'){
+
+                    message.setReceiver("*");
+                    message.setType("tx0");
+                    message.setBody(message.getBody());
+
+                    String BrdcstMessage = mapper.writeValueAsString(message);
+
+                    for (int i = 0; i < listaClient.size(); i++) {
+                        if(!message.getSender().equals(listaClient.get(i).clientUserName)){
+                            listaClient.get(i).pr.println(BrdcstMessage);
+                        }
                     }
                 }
             }
