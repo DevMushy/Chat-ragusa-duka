@@ -26,27 +26,29 @@ public class App {
         // String temp = br.readLine();
         // ClientList = mapper.readValue(temp, ArrayList.class);
 
-        //if(ClientList.get(0) == null){
-            System.out.println("inserisci username: ");
-            userName = tastiera.readLine();
-            pr.println(userName);
-        /*}else{
-            boolean Namecontrol = true;
-            while (Namecontrol) {    
-                System.out.println("inserisci username: ");
-                userName = tastiera.readLine();
-                for (int i = 0; i < ClientList.size(); i++) {
-                    if (ClientList.get(i).equals(userName)) {
-                        System.out.println(ClientList);
-                        Namecontrol = false;
-                    }
-                }
-                if(!Namecontrol){
-                    pr.println(userName);
-                    break;
-                }
-            }
-        }*/
+        // if(ClientList.get(0) == null){
+        System.out.println("inserisci username: ");
+        userName = tastiera.readLine();
+        pr.println(userName);
+        /*
+         * }else{
+         * boolean Namecontrol = true;
+         * while (Namecontrol) {
+         * System.out.println("inserisci username: ");
+         * userName = tastiera.readLine();
+         * for (int i = 0; i < ClientList.size(); i++) {
+         * if (ClientList.get(i).equals(userName)) {
+         * System.out.println(ClientList);
+         * Namecontrol = false;
+         * }
+         * }
+         * if(!Namecontrol){
+         * pr.println(userName);
+         * break;
+         * }
+         * }
+         * }
+         */
 
         contr.start();
 
@@ -57,12 +59,19 @@ public class App {
         Boolean loop = true;
         System.out.println("digita /help per vederte la lista dei comandi");
         while (loop) {
+            // input da tastiera
             inputString = tastiera.readLine();
+            // crea messaggio e serializza
             messageToSend = new Message(userName, inputString);
             messageJSON = mapper.writeValueAsString(messageToSend);
+            // invio messaggio
             pr.println(messageJSON);
+            //controllo chiusura
+            if (inputString.equals("/exit")) {
+                loop = false;
+            }
         }
-        ;
+
         br.close();
         pr.close();
         s.close();

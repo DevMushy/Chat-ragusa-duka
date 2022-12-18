@@ -9,10 +9,11 @@ public class App
     {
         boolean cond = true;
         ArrayList<ClientHandler> listaClient = new ArrayList();
-
+        //apre la socket
         ServerSocket ss = new ServerSocket(3000);
         System.out.println("Server in ascolto sulla porta 3000");
         while(cond){
+            //client si collega
             Socket s = ss.accept();
             ClientHandler c = new ClientHandler(s,listaClient);
             listaClient.add(c);

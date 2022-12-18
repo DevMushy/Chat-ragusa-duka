@@ -38,9 +38,16 @@ public class ChatControlThread extends Thread{
 
         while(chatOn) {
             try {
+                //riceve il messaggio
                 ChatJSONString = br.readLine();
+                //lo trasforma in un oggetto message
                 parsedMessage = mapper.readValue(ChatJSONString, Message.class);
+                //stampa il campo body del messaggio
                 System.out.println(parsedMessage.getBody());
+                //controllo per la chiusura
+                if(parsedMessage.getBody().equals("close client")){
+                    chatOn = false;
+                }
                 
             } catch (IOException e) {
                 System.out.println(e.getMessage());
