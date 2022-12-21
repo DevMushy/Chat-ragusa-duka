@@ -1,5 +1,5 @@
 # Chat Protocol Documentation
-- [Description](https://github.com/DevMushy/chat-ragusa-duka/edit/main/README.md#description)
+- [Description](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#description)
 - [Technologies utilized](https://github.com/DevMushy/chat-ragusa-duka/edit/main/README.md#technologies-utilized)
 - [Message Protocol](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#message-protocol)
   + [Client connection](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#client-connection)
