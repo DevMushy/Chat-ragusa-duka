@@ -8,7 +8,7 @@
 
 
 ## Description
-hello, this is a description
+Simple Java Maven Chat using JSON to transfer information from client to server and viceversa, multiple clients can connect to the server currently using the port: 3000.
 
 
 ## Technologies utilized
