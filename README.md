@@ -1,10 +1,10 @@
 # Chat Protocol Documentation
 - [Description](https://github.com/DevMushy/chat-ragusa-duka/edit/main/README.md#description)
 - [Technologies utilized](https://github.com/DevMushy/chat-ragusa-duka/edit/main/README.md#technologies-utilized)
-- [Message Protocol](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#message-protocol)
-  + [Client connection](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#client-connection)
-  + [Broadcast Message](https://github.com/DevMushy/Chat-ragusa-duka/edit/master/README.md#broadcast-message)
-  + a
+- [Message Protocol](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#message-protocol)
+  + [Client connection](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#client-connection)
+  + [Broadcast Message](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#broadcast-message)
+  + [Private Message](https://github.com/DevMushy/Chat-ragusa-duka/tree/master#private-message)
 
 
 ## Description
